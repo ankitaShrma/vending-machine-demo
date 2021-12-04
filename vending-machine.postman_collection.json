@@ -1,0 +1,124 @@
+{
+  "info": {
+    "_postman_id": "eb7d4176-d38f-40ad-8108-de8875ad2f01",
+    "name": "vending-machine",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ready",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \n}"
+        },
+        "url": {
+          "raw": "localhost:8088/machine/ready",
+          "host": ["localhost"],
+          "port": "8088",
+          "path": ["machine", "ready"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "currencyInserted after ready",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"currency\":30,\n   \"state\":\"ready\"\n}"
+        },
+        "url": {
+          "raw": "localhost:8088/machine/currencyInserted",
+          "host": ["localhost"],
+          "port": "8088",
+          "path": ["machine", "currencyInserted"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aborted after currency",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"state\":\"currencyInserted\",\n    \"amountLeft\":70,\n    \"currency\":30\n}"
+        },
+        "url": {
+          "raw": "localhost:8088/machine/transactionAborted",
+          "host": ["localhost"],
+          "port": "8088",
+          "path": ["machine", "transactionAborted"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "currencyInserted and itemDispensed",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"currency\":30,\n   \"state\":\"currencyInserted\",\n   \"product\":\"Coke\",\n   \"quantity\":1,\n   \"amountLeft\":70\n}"
+        },
+        "url": {
+          "raw": "localhost:8088/machine/itemDispensed",
+          "host": ["localhost"],
+          "port": "8088",
+          "path": ["machine", "itemDispensed"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "changeDispensed and itemDispensed",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"currency\":30,\n   \"state\":\"itemDispensed\",\n   \"product\":\"Coke\",\n   \"quantity\":1,\n   \"amountLeft\":80,\n   \"change\":10\n}"
+        },
+        "url": {
+          "raw": "localhost:8088/machine/changeDispensed",
+          "host": ["localhost"],
+          "port": "8088",
+          "path": ["machine", "changeDispensed"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
